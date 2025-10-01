@@ -24,7 +24,7 @@ This repository provides a script and configuration to set up Jenkins with Blue 
 ### 3. Clone the Repository
 - Run:
   ```powershell
-  git clone https://github.com/yourusername/jenkins-docker-install.git
+  git clone https://github.com/Zerocode-sean/jenkins-docker-install
   cd jenkins-docker-install
 ## Setup Instructions
 1. Run the setup script on powershell : 
