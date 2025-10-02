@@ -28,31 +28,45 @@ This repository provides a script and configuration to set up Jenkins with Blue 
   cd jenkins-docker-install
 ## Setup Instructions
 1. Run the setup script on powershell : 
-  **.\setup.ps1 -UseCompose $true**
+## .\setup.ps1 
   This creates the network, builds the custom Jenkins image, and starts containers using docker-compose.
   **Verification**
 
 ## Check running containers:
-**powershelldocker ps**
-## Access Jenkins UI: http://localhost:8080
+## powershelldocker ps by command :
+docker image ls
+
+## Access Jenkins UI: 
+http://localhost:8080
 **Unlock with initial admin password**
 docker logs jenkins-blueocean | Select-String "initialAdminPassword"
 Post-Installation Setup Wizard
 
 Follow the wizard at http://localhost:8080 to unlock Jenkins, install plugins, and create an admin user.
 
-Troubleshooting
+## Troubleshooting
 
-UI Inaccessible:
+**UI Inaccessible:**
 
-Check containers: docker ps.
+**Check containers:**
+ docker ps.
+
 If exited, check logs: docker logs jenkins-blueocean.
 Fix: docker-compose down -v && docker-compose up -d.
 
 
-Build Failure: Simplify Dockerfile plugins, rebuild with docker build -t myjenkins-blueocean:2.516.3-1 ..
-Network Issues: Recreate network: docker network create jenkins.
-Port Conflict: Check netstat -aon | findstr :8080, adjust to 9000:8080 in docker-compose.yml.
-Startup Delay: Wait 2-5 minutes.
-Firewall: Allow port 8080: netsh advfirewall firewall add rule name="Jenkins 8080" dir=in action=allow protocol=TCP localport=8080.
-Logs: docker-compose logs or docker logs jenkins-blueocean.
+**Build Failure:**
+ Simplify Dockerfile plugins, rebuild with 
+ *docker build -t myjenkins-blueocean:2.516.3-1*
+**Network Issues:** 
+**Recreate network:**
+  *docker network create jenkins*
+**Port Conflict:**
+*Check netstat -aon | findstr :8080*,
+*adjust to* 9000:8080 in docker-compose.yml.
+## Startup Delay: Wait 2-5 minutes.
+## Firewall: 
+**Allow port 8080:** 
+*netsh advfirewall firewall add rule name="Jenkins 8080" dir=in action=allow protocol=TCP localport=8080.*
+## Logs: 
+*docker-compose logs or docker logs jenkins-blueocean.*
